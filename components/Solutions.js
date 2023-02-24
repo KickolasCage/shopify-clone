@@ -1,17 +1,9 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHammer,
-  faMailForward,
-  faUpload,
-  faHouse,
-} from "@fortawesome/free-solid-svg-icons";
-
 const Solutions = ({ open }) => {
   return (
     <div
-      className={`text-black ${
+      className={`text-black bg-white ${
         open ? "flex" : "hidden"
-      }  flex flex-row gap-10 justify-center py-5`}
+      }  flex flex-row gap-10 justify-center py-5 transition-all ease-linear duration-100`}
     >
       {solutionsTable.map(({ header, items }, ind) => {
         return (

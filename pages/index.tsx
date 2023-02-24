@@ -17,44 +17,16 @@ import {
   faPerson,
   faQuestion,
 } from "@fortawesome/free-solid-svg-icons";
-import Solutions from "../components/Solutions";
-import Resources from '../components/Resources'
+import { buttonColorTransition } from "../utils/utils";
+import NavbarOnScroll from "../components/NavbarOnScroll";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 
 export default function Home() {
   return (
     <div className="bg-white">
-      <div className="bg-green-300 text-sm flex items-center justify-center h-8 ">
-        <div>
-          Start a free trial and enjoy 3 months of Shopify for $1/month on
-          select plans.&nbsp;{" "}
-          <a href="#" className="font-bold underline">
-            Sign up now
-          </a>
-        </div>
-      </div>
-      <div className="fixed top-0 left-0 right-0 border-blue border-b-2 mb-2">
-        <nav className="text-black flex h-16 bg-white items-center justify-between px-16">
-          <div className="flex flex-row items-center gap-2">
-            <b>Shopify</b>
-            <div>Solutions</div>
-            <div>Pricing</div>
-            <div>Resources</div>
-          </div>
-          <div className="flex justify-between items-center gap-4">
-            <a href="#" className="text-black">
-              Log in
-            </a>
-            <button className="bg-black rounded-full py-2 px-2">
-              <a href="#" className="text-white py-2">
-                Start free trial
-              </a>
-            </button>
-          </div>
-        </nav>
-        <Solutions open={false} />    
-        <Resources open={true}/>    
-      </div>
+      <StartFreeTrial />
+      <NavbarOnScroll />
       <div className="bg-white">
         <img
           className="float-right"
@@ -62,7 +34,7 @@ export default function Home() {
           height={500}
           src="https://logos-world.net/wp-content/uploads/2020/11/Shopify-Symbol.png"
         />
-        <div className="grid grid-cols-1 justify-items-left w-[40%] gap-8 ml-12 mb-12">
+        <div className="grid grid-cols-1 justify-items-left w-[40%] gap-8 ml-12 my-12">
           <div className="group bg-black hover:bg-yellow-400 rounded-full text-left pl-[1.5rem] pr-[2rem] py-2 text-white inline-block w-[350px]">
             {" "}
             <span className="group-hover:text-black">
@@ -89,7 +61,9 @@ export default function Home() {
                   placeholder="Enter your email address"
                 />
                 <span className="flex items-center ">
-                  <button className="text-white bg-black w-[180px] py-[4px] rounded-full">
+                  <button
+                    className={`${buttonColorTransition} w-[180px] py-[4px] rounded-full`}
+                  >
                     Start free trial
                   </button>
                 </span>
@@ -101,101 +75,151 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        <div className="text-4xl font-bold mx-16 my-4 leading-normal mb-12 text-black">
-          Discover why millions of entrepreneurs chose Shopify to build their
-          business — <br />
-          <span className="bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400">
-            from hello world to IPO.
-          </span>
-        </div>
-        <div className="flex flex-row gap-16 mx-16 my-4">
-          {statisticsList.map(({ header, text }) => (
-            <div className="border-l-8 border-blue-500 pl-2">
-              <h1 className="text-4xl font-bold text-black"> {header}</h1>
-              <p className="text-gray-500"> {text}</p>
-            </div>
-          ))}
-        </div>
-        <div className="uppercase mx-8 my-8 text-blue-400">
-          Explore the world's largest commerce community
-        </div>
-        <div className="flex flex-row my-8 mx-8 gap-8">
-          {possibilitiesList.map(({ icon, header, text }) => (
-            <div className="bg-white shadow-md pl-4 pr-4 py-4 group">
-              <div className="my-8">
-                <FontAwesomeIcon size="lg" icon={icon} color="black" />
-              </div>
-              <h3 className="font-bold text-xl my-2">
-                {header}&nbsp;
-                <span className="transition ease-in delay-250 opacity-0 group-hover:opacity-100">
-                  &rarr;
-                </span>
-              </h3>
-              <div className="text-gray-400 text-md">{text}</div>
-            </div>
-          ))}
-        </div>
-        {/* <div className="bg-gray-200 pl-16">
-            <div className="text-black text-4xl font-bold">Your store, your way</div>
-
-        </div> */}
-        <div className="bg-black">
-          <div className="flex flex-col items-center justify-center pt-12">
-            <div className="text-green-400 uppercase text-lg">
-              Shopify support
-            </div>
-            <div className="text-white text-5xl py-24 text-center px-24">
-              The help you need, when you need it
-            </div>
-          </div>
-          <div className="grid grid-rows-2 gap-2 grid-flow-col pb-24 mx-12">
-            {informationList.map(({ icon, header, text, buttonText }) => (
-              <div className="group text-white flex flex-col border-white bg-slate-900 pl-4 py-8 gap-4 rounded-lg">
-                <div>
-                  <FontAwesomeIcon color="white" size="lg" icon={icon} />
-                </div>
-                <div className="text-xl font-bold">{header}</div>
-                <div className="">{text}</div>
-                <button className="border-2 w-[128px] rounded-full bg-slate-700 group-hover:bg-slate-600">
-                  {buttonText}&nbsp;
-                  <span className="group-hover:-translate-x-6">&gt;</span>
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
+        <Statistics />
+        <Possibilities/>
+        <ShopifySupport />
         <div className="bg-green-400 flex flex-col items-center">
           <div className="font-bold text-3xl my-8">Grow your business here</div>
           <div className="my-8">
             Whether you want to sell products down the street or around the
             world, we have all the tools you need.
           </div>
-          <button className="rounded-full bg-black text-white px-4 py-2 my-8 mb-16">
+          <button
+            className={`rounded-full px-4 py-2 my-8 mb-16 ${buttonColorTransition}`}
+          >
             Start free trial
           </button>
         </div>
-        <div className="bg-black">
-          <hr className="bg-white px-12" />
-          <div className="p-12 flex flex-row justify-around">
-            <div className="text-white flex justify-self-start items-center gap-4 text-[12px]">
-              {miscInformationList.map(({ text, link }) => (
-                <a href={link}>{text}</a>
-              ))}
-            </div>
-            <div className="flex flex-row items-center gap-5 my-4">
-              {socialNetworksList.map(({ icon, link }) => (
-                <a href={link}>
-                  <FontAwesomeIcon color="white" size="lg" icon={icon} />
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
+        <BottomNavigation />
       </div>
     </div>
   );
 }
+
+const StartFreeTrial = () => {
+  const [open, setOpen] = useState(true);
+  return (
+    <div
+      className={`${
+        open ? "" : "hidden"
+      } bg-green-300 text-sm flex items-center justify-center h-8 relative`}
+    >
+      <div>
+        Start a free trial and enjoy 3 months of Shopify for $1/month on select
+        plans.&nbsp;{" "}
+        <a href="#" className="font-bold underline">
+          Sign up now
+        </a>
+      </div>
+      <div
+        className={`font-bold cursor-pointer absolute right-[10%]`}
+        onClick={() => setOpen(false)}
+      >
+        x
+      </div>
+    </div>
+  );
+};
+
+const Statistics = () => {
+  return (
+    <>
+      <div className="text-4xl font-bold mx-16 my-4 leading-normal mb-12 text-black">
+        Discover why millions of entrepreneurs chose Shopify to build their
+        business — <br />
+        <span className="bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400">
+          from hello world to IPO.
+        </span>
+      </div>
+      <div className="flex flex-row gap-16 mx-16 my-4">
+        {statisticsList.map(({ header, text }) => (
+          <div className="border-l-8 border-blue-500 pl-2">
+            <h1 className="text-4xl font-bold text-black"> {header}</h1>
+            <p className="text-gray-500"> {text}</p>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+};
+
+const Possibilities = () => {
+  return (
+    <>
+      <div className="uppercase mx-8 my-8 text-blue-400">
+        Explore the world's largest commerce community
+      </div>
+      <div className="flex flex-row my-8 mx-8 gap-8">
+        {possibilitiesList.map(({ icon, header, text }) => (
+          <div className="bg-white shadow-md pl-4 pr-4 py-4 group">
+            <div className="my-8">
+              <FontAwesomeIcon size="lg" icon={icon} color="black" />
+            </div>
+            <h3 className="font-bold text-xl my-2">
+              {header}&nbsp;
+              <span className="transition ease-in delay-250 opacity-0 group-hover:opacity-100">
+                &rarr;
+              </span>
+            </h3>
+            <div className="text-gray-400 text-md">{text}</div>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+};
+
+const ShopifySupport = () => {
+  return (
+    <div className="bg-black">
+      <div className="flex flex-col items-center justify-center pt-12">
+        <div className="text-green-400 uppercase text-lg">Shopify support</div>
+        <div className="text-white text-5xl py-24 text-center px-24">
+          The help you need, when you need it
+        </div>
+      </div>
+      <div className="grid grid-rows-2 gap-2 grid-flow-col pb-24 mx-12">
+        {informationList.map(({ icon, header, text, buttonText }) => (
+          <div className="group text-white flex flex-col border-white bg-slate-900 pl-4 py-8 gap-4 rounded-lg border-gray-700 border-[1px]">
+            <div>
+              <FontAwesomeIcon color="white" size="lg" icon={icon} />
+            </div>
+            <div className="text-xl font-bold">{header}</div>
+            <div className="">{text}</div>
+            <button className="border-2 w-[128px] rounded-full bg-slate-700 group-hover:bg-slate-600">
+              {buttonText}&nbsp;
+              <span className="group-hover:translate-x-20 transition-all duration-300">
+                &gt;
+              </span>
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const BottomNavigation = () => {
+  return (
+    <div className="bg-black">
+      <hr className="bg-white px-12" />
+      <div className="p-12 flex flex-row justify-around">
+        <div className="text-white flex justify-self-start items-center gap-4 text-[12px]">
+          {miscInformationList.map(({ text, link }) => (
+            <a href={link}>{text}</a>
+          ))}
+        </div>
+        <div className="flex flex-row items-center gap-5 my-4">
+          {socialNetworksList.map(({ icon, link }) => (
+            <a href={link}>
+              <FontAwesomeIcon color="white" size="lg" icon={icon} />
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const statisticsList = [
   { header: "Millions", text: "of merchants worldwide" },
