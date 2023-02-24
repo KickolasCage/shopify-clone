@@ -29,22 +29,13 @@ export default function Home() {
       <NavbarOnScroll />
       <div className="bg-white">
         <img
-          className="float-right"
-          width={500}
-          height={500}
+          className="hidden md:block md:float-right mr-5 "
+          width={400}
+          height={400}
           src="https://logos-world.net/wp-content/uploads/2020/11/Shopify-Symbol.png"
         />
         <div className="grid grid-cols-1 justify-items-left w-[40%] gap-8 ml-12 my-12">
-          <div className="group bg-black hover:bg-yellow-400 rounded-full text-left pl-[1.5rem] pr-[2rem] py-2 text-white inline-block w-[350px]">
-            {" "}
-            <span className="group-hover:text-black">
-              Shopify Editions | Winter '23:{" "}
-            </span>
-            <a href="#" className="text-yellow-600 group-hover:text-black">
-              {" "}
-              Explore +100 product updates
-            </a>
-          </div>
+          <ShopifyEditionsButton/>
           <h1 className="text-4xl font-bold text-black">
             The global commerce platform
           </h1>
@@ -76,7 +67,7 @@ export default function Home() {
           </div>
         </div>
         <Statistics />
-        <Possibilities/>
+        <Possibilities />
         <ShopifySupport />
         <div className="bg-green-400 flex flex-col items-center">
           <div className="font-bold text-3xl my-8">Grow your business here</div>
@@ -95,6 +86,21 @@ export default function Home() {
     </div>
   );
 }
+
+const ShopifyEditionsButton = () => {
+  return (
+    <div className="group bg-black hover:bg-yellow-400 rounded-full text-left pl-[1.5rem] pr-[2rem] py-2 text-white inline-block w-[350px]">
+      {" "}
+      <span className="group-hover:text-black">
+        Shopify Editions | Winter '23:{" "}
+      </span>
+      <a href="#" className="text-yellow-600 group-hover:text-black">
+        {" "}
+        Explore +100 product updates
+      </a>
+    </div>
+  );
+};
 
 const StartFreeTrial = () => {
   const [open, setOpen] = useState(true);
