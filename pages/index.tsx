@@ -22,6 +22,11 @@ import NavbarOnScroll from "../components/NavbarOnScroll";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
+import {
+  EmailAddressForm,
+  StartFreeTrial,
+} from "../components/smallComponents";
+
 export default function Home() {
   return (
     <div className="bg-white">
@@ -35,7 +40,7 @@ export default function Home() {
           src="https://logos-world.net/wp-content/uploads/2020/11/Shopify-Symbol.png"
         />
         <div className="grid grid-cols-1 justify-items-left w-[40%] gap-8 ml-12 my-12">
-          <ShopifyEditionsButton/>
+          <ShopifyEditionsButton />
           <h1 className="text-4xl font-bold text-black">
             The global commerce platform
           </h1>
@@ -44,21 +49,8 @@ export default function Home() {
             everywhere in between.
           </p>
           <div className="h-400px flex flex-col">
-            <div className="w-[430px] bg-white border-gray-400 rounded-full border-2">
-              <form className="flex flex-row">
-                <input
-                  className="focus:outline-none h-12 rounded-full px-2 bg-white border-gray-400 text-black"
-                  type="text"
-                  placeholder="Enter your email address"
-                />
-                <span className="flex items-center ">
-                  <button
-                    className={`${buttonColorTransition} w-[180px] py-[4px] rounded-full`}
-                  >
-                    Start free trial
-                  </button>
-                </span>
-              </form>
+            <div className="mb-2">
+              <EmailAddressForm />
             </div>
             <div className="text-[10px]">
               Try Shopify free for 3 days, no credit card required. By entering
@@ -102,31 +94,6 @@ const ShopifyEditionsButton = () => {
   );
 };
 
-const StartFreeTrial = () => {
-  const [open, setOpen] = useState(true);
-  return (
-    <div
-      className={`${
-        open ? "" : "hidden"
-      } bg-green-300 text-sm flex items-center justify-center h-8 relative`}
-    >
-      <div>
-        Start a free trial and enjoy 3 months of Shopify for $1/month on select
-        plans.&nbsp;{" "}
-        <a href="#" className="font-bold underline">
-          Sign up now
-        </a>
-      </div>
-      <div
-        className={`font-bold cursor-pointer absolute right-[10%]`}
-        onClick={() => setOpen(false)}
-      >
-        x
-      </div>
-    </div>
-  );
-};
-
 const Statistics = () => {
   return (
     <>
@@ -157,13 +124,13 @@ const Possibilities = () => {
       </div>
       <div className="flex flex-row my-8 mx-8 gap-8">
         {possibilitiesList.map(({ icon, header, text }) => (
-          <div className="bg-white shadow-md pl-4 pr-4 py-4 group">
+          <div className="bg-white shadow-md pl-4 pr-4 py-4 group ">
             <div className="my-8">
               <FontAwesomeIcon size="lg" icon={icon} color="black" />
             </div>
             <h3 className="font-bold text-xl my-2">
               {header}&nbsp;
-              <span className="transition ease-in delay-250 opacity-0 group-hover:opacity-100">
+              <span className="font-bold transition ease-in delay-250 opacity-0 group-hover:opacity-100">
                 &rarr;
               </span>
             </h3>
@@ -210,15 +177,15 @@ const BottomNavigation = () => {
     <div className="bg-black">
       <hr className="bg-white px-12" />
       <div className="p-12 flex flex-row justify-around">
-        <div className="text-white flex justify-self-start items-center gap-4 text-[12px]">
+        <div className="text-white flex justify-self-start items-center gap-4 text-[12px] ">
           {miscInformationList.map(({ text, link }) => (
             <a href={link}>{text}</a>
           ))}
         </div>
         <div className="flex flex-row items-center gap-5 my-4">
-          {socialNetworksList.map(({ icon, link }) => (
+          {socialNetworksList.map(({ icon, link }, ind) => (
             <a href={link}>
-              <FontAwesomeIcon color="white" size="lg" icon={icon} />
+              <FontAwesomeIcon color="white" size="lg" icon={icon} key={ind} />
             </a>
           ))}
         </div>
