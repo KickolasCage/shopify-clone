@@ -8,7 +8,7 @@ const StartFreeTrial = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const listenToScroll = () => {
-    let heightToHideFrom = 200;
+    let heightToHideFrom = 100;
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
 

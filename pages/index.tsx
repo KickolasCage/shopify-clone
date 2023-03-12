@@ -153,7 +153,7 @@ const ShopifySupport = () => {
       </div>
       <div className="grid grid-rows-2 gap-2 grid-flow-col pb-24 mx-12">
         {informationList.map(({ icon, header, text, buttonText }) => (
-          <div className="group text-white flex flex-col border-white bg-slate-900 pl-4 py-8 gap-4 rounded-lg border-gray-700 border-[1px]">
+          <div className="group text-white flex flex-col bg-slate-900 pl-4 py-8 gap-4 rounded-lg border-gray-700 border-[1px]">
             <div>
               <FontAwesomeIcon color="white" size="lg" icon={icon} />
             </div>

@@ -1,3 +1,6 @@
+import { faCircleInfo, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const Resources = ({ open }) => {
     return (
         <div
@@ -37,7 +40,7 @@ export default Resources;
 
 const solutionsTable = [
   {
-    header: "Help and support",
+    header: <span><FontAwesomeIcon icon={faCircleInfo}/> Help and support</span>,
     items: [
       { text: "Help and support", secondaryText: "Get 24/7 support" },
       { text: "How-to guides", secondaryText: "Read in-depth business guides" },
@@ -45,7 +48,7 @@ const solutionsTable = [
     ],
   },
   {
-    header: "Popular topics",
+    header: <span><FontAwesomeIcon icon={faCircleInfo}/> Popular topics</span>,
     items: [
       {
         text: "What is Shopify?",

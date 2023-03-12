@@ -40,7 +40,7 @@ export default function Login() {
         ))}
         <div className="text-gray-600 text-sm">
           New to Shopify?
-          <a href="#" className="text-green-600">
+          <a href="/" className="text-green-600">
             &nbsp;Get started
           </a>
         </div>

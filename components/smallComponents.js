@@ -12,7 +12,7 @@ export const StartFreeTrial = () => {
       <div>
         Start a free trial and enjoy 3 months of Shopify for $1/month on select
         plans.&nbsp;{" "}
-        <a href="#" className="font-bold underline">
+        <a href="/login" className="font-bold underline">
           Sign up now
         </a>
       </div>
