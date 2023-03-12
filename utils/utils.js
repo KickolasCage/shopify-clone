@@ -1,0 +1,1 @@
+export const buttonColorTransition = 'border-black border-[1px] bg-black text-white hover:bg-white hover:text-black transition-color duration-300 ease-in-out'
